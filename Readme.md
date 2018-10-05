@@ -1,5 +1,7 @@
 # PunktDe.Elastic.AssetUsageInNodes
 
+[![Travis Build Status](https://travis-ci.org/punktDe/elastic-assetusageinnodes.svg?branch=master)](https://travis-ci.org/punktDe/elastic-assetusageinnodes) [![Latest Stable Version](https://poser.pugx.org/punktde/elastic-assetusageinnodes/v/stable)](https://packagist.org/packages/punktde/elastic-assetusageinnodes) [![Total Downloads](https://poser.pugx.org/punktde/elastic-assetusageinnodes/downloads)](https://packagist.org/packages/punktde/elastic-assetusageinnodes)
+
 ## Problem this package solves
 
 In order to determine which assets are used in which content elements, Neos needs to do a full like search through all properties of the Neos ContentRepository table. 

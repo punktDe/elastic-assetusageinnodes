@@ -2,6 +2,7 @@
     "description": "Calculate asset usages using elastic instead of slow database like search.",
     "type": "neos-package",
     "name": "punktde/elastic-assetusageinnodes",
+    "license": "MIT",
     "require": {
         "neos/neos": ">= 4.0",
         "flowpack/elasticsearch-contentrepositoryadaptor": ">= 4.0"
