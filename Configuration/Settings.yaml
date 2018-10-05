@@ -1,0 +1,5 @@
+Neos:
+  ContentRepository:
+    Search:
+      defaultContext:
+        AssetUsage: PunktDe\Elastic\AssetUsageInNodes\Eel\AssetUsageHelper

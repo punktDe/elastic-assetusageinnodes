@@ -1,0 +1,7 @@
+'Neos.Neos:Node':
+  properties:
+    __assetUsages:
+      search:
+        elasticSearchMapping:
+          type: keyword
+        indexing: '${AssetUsage.extractReferencedAssets(node)}'

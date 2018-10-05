@@ -1,0 +1,15 @@
+'PunktDe.Elastic.AssetUsageInNodes:AssetReferencingNode':
+  superTypes:
+    'Neos.ContentRepository.Testing:Content': true
+  properties:
+    date:
+      type: DateTime
+    text:
+      type: string
+    image:
+      type: Neos\Media\Domain\Model\ImageInterface
+    asset:
+      type: Neos\Media\Domain\Model\Asset
+    assets:
+      type: array<Neos\Media\Domain\Model\Asset>
+    
