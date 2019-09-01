@@ -4,7 +4,7 @@
     "name": "punktde/elastic-assetusageinnodes",
     "license": "MIT",
     "require": {
-        "neos/neos": ">= 4.0",
+        "neos/neos": "^4.0",
         "flowpack/elasticsearch-contentrepositoryadaptor": ">= 4.0"
     },
     "autoload": {
