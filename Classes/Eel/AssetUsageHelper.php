@@ -37,13 +37,17 @@ class AssetUsageHelper implements ProtectedContextAwareInterface
      * @param NodeInterface $node
      * @return array
      * @throws NodeException
-     * @throws AssetUsageExtractionException
      */
     public function extractReferencedAssets(NodeInterface $node): array
     {
         $assetReferences = [];
+        $propertyConfiguration = $node->getNodeType()->getProperties();
 
         foreach ($node->getPropertyNames() as $propertyName) {
+            if(!isset($propertyConfiguration[$propertyName])) {
+                continue;
+            }
+
             $assetReferences = array_merge($assetReferences, $this->extractReferencedAssetFromProperty($node, $propertyName));
         }
 
