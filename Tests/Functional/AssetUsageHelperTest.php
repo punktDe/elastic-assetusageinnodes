@@ -291,6 +291,7 @@ class AssetUsageHelperTest extends FunctionalTestCase
 
         $this->siteNode = $rootNode->createNode('welcome', $this->nodeTypeManager->getNodeType('Neos.NodeTypes:Page'));
         $this->siteNode->setProperty('title', 'welcome');
+        $this->siteNode->createNode('main',  $this->nodeTypeManager->getNodeType('Neos.Neos:ContentCollection'));
 
         $this->nodeDataRepository = $this->objectManager->get(NodeDataRepository::class);
     }
