@@ -101,7 +101,7 @@ class AssetUsageHelperTest extends FunctionalTestCase
 
     protected static $testablePersistenceEnabled = true;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -121,7 +121,7 @@ class AssetUsageHelperTest extends FunctionalTestCase
     /**
      * @return array
      */
-    public function assetsInContentDataProvider()
+    public function assetsInContentDataProvider(): array
     {
         return [
             'singleAsset' => [
@@ -145,16 +145,16 @@ class AssetUsageHelperTest extends FunctionalTestCase
      * @param string $content
      * @param array $expected
      */
-    public function getAssetReferencesFromContent(string $content, array $expected)
+    public function getAssetReferencesFromContent(string $content, array $expected): void
     {
         $actual = $this->assetUsageHelper->_call('getAssetReferencesFromContent', $content);
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     /**
      * @test
      */
-    public function getAssetReferencesFromObjects()
+    public function getAssetReferencesFromObjects(): void
     {
         $input = [
             $this->testDocumentAsset,
@@ -178,9 +178,8 @@ class AssetUsageHelperTest extends FunctionalTestCase
      * @throws NodeExistsException
      * @throws NodeTypeNotFoundException
      * @throws NodeException
-     * @throws AssetUsageExtractionException
      */
-    public function extractReferencedAssets()
+    public function extractReferencedAssets(): void
     {
         $assetContainingNode = $this->siteNode->getNode('main')->createNode('asset-node', $this->nodeTypeManager->getNodeType('PunktDe.Elastic.AssetUsageInNodes:AssetReferencingNode'));
 
@@ -191,7 +190,7 @@ class AssetUsageHelperTest extends FunctionalTestCase
 
         $assetReferences = $this->assetUsageHelper->extractReferencedAssets($assetContainingNode);
 
-        $this->assertCount(3, $assetReferences);
+        self::assertCount(3, $assetReferences);
 
         $expectedAssetReferences = [
             'f8f075dc-7a43-40d6-b279-8052271eab28',
@@ -199,18 +198,17 @@ class AssetUsageHelperTest extends FunctionalTestCase
             $this->persistenceManager->getIdentifierByObject($this->testDocumentAsset),
         ];
 
-        $this->assertEquals($expectedAssetReferences, $assetReferences);
+        self::assertEquals($expectedAssetReferences, $assetReferences);
     }
 
     /**
      * @test
      *
-     * @throws AssetUsageExtractionException
      * @throws NodeException
      * @throws NodeExistsException
      * @throws NodeTypeNotFoundException
      */
-    public function extractReferencesFromArrays()
+    public function extractReferencesFromArrays(): void
     {
         $assetContainingNode = $this->siteNode->getNode('main')->createNode('asset-node', $this->nodeTypeManager->getNodeType('PunktDe.Elastic.AssetUsageInNodes:AssetReferencingNode'));
 
@@ -218,25 +216,24 @@ class AssetUsageHelperTest extends FunctionalTestCase
 
         $assetReferences = $this->assetUsageHelper->extractReferencedAssets($assetContainingNode);
 
-        $this->assertCount(2, $assetReferences);
+        self::assertCount(2, $assetReferences);
 
         $expectedAssetReferences = [
             $this->persistenceManager->getIdentifierByObject($this->testImageAsset),
             $this->persistenceManager->getIdentifierByObject($this->testDocumentAsset),
         ];
 
-        $this->assertEquals($expectedAssetReferences, $assetReferences);
+        self::assertEquals($expectedAssetReferences, $assetReferences);
     }
 
     /**
      * @test
      *
-     * @throws AssetUsageExtractionException
      * @throws NodeException
      * @throws NodeExistsException
      * @throws NodeTypeNotFoundException
      */
-    public function sameAssetIsNotAddedTwice()
+    public function sameAssetIsNotAddedTwice(): void
     {
         $assetContainingNode = $this->siteNode->getNode('main')->createNode('asset-node', $this->nodeTypeManager->getNodeType('PunktDe.Elastic.AssetUsageInNodes:AssetReferencingNode'));
 
@@ -245,19 +242,20 @@ class AssetUsageHelperTest extends FunctionalTestCase
         $assetContainingNode->setProperty('text', sprintf('download <a href="asset://%s">Image<\/a>.', $this->persistenceManager->getIdentifierByObject($this->testImageAsset)));
         $assetReferences = $this->assetUsageHelper->extractReferencedAssets($assetContainingNode);
 
-        $this->assertCount(1, $assetReferences);
+        self::assertCount(1, $assetReferences);
 
         $expectedAssetReferences = [
             $this->persistenceManager->getIdentifierByObject($this->testImageAsset)
         ];
 
-        $this->assertEquals($expectedAssetReferences, $assetReferences);
+        self::assertEquals($expectedAssetReferences, $assetReferences);
     }
 
     /**
      * @throws \Neos\Flow\ResourceManagement\Exception
+     * @throws IllegalObjectTypeException
      */
-    protected function setupTestAssets()
+    protected function setupTestAssets(): void
     {
         $testResourceImage = $this->resourceManager->importResource(Files::concatenatePaths([__DIR__, 'Fixtures/Logo.png']));
         $testResourceDocument = $this->resourceManager->importResource(Files::concatenatePaths([__DIR__, 'Fixtures/Document.docx']));
@@ -276,7 +274,7 @@ class AssetUsageHelperTest extends FunctionalTestCase
      * @throws NodeTypeNotFoundException
      * @throws IllegalObjectTypeException
      */
-    protected function setupTestNodes()
+    protected function setupTestNodes(): void
     {
         $this->workspaceRepository = $this->objectManager->get(WorkspaceRepository::class);
         $liveWorkspace = new Workspace('live');
