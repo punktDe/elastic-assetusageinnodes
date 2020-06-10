@@ -15,6 +15,9 @@
     "extra": {
         "neos": {
             "package-key": "PunktDe.Elastic.AssetUsageInNodes"
-        }
+        },
+        "applied-flow-migrations": [
+            "Flowpack.ElasticSearch.ContentRepositoryAdaptor-20200513223401"
+        ]
     }
 }

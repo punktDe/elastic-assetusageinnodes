@@ -80,10 +80,10 @@ class FindNodesByRelatedEntitiesUsingElasticAspect
         $this->request->queryFilter('bool', [
             'should' => [
                 [
-                    'term' => ['__parentPath' => $pathPrefix]
+                    'term' => ['neos_parent_path ' => $pathPrefix]
                 ],
                 [
-                    'term' => ['__path' => $pathPrefix]
+                    'term' => ['neos_path' => $pathPrefix]
                 ]
             ]
         ]);
@@ -107,7 +107,7 @@ class FindNodesByRelatedEntitiesUsingElasticAspect
         $relatedNodePaths = [];
 
         foreach ($response['hits']['hits'] as $hit) {
-            $relatedNodePaths[] = $hit['_source']['__path'];
+            $relatedNodePaths[] = $hit['_source']['neos_path'];
         }
 
         return $relatedNodePaths;
