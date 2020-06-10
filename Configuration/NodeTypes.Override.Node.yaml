@@ -1,6 +1,6 @@
 'Neos.Neos:Node':
   properties:
-    __assetUsages:
+    punktde_assetUsages:
       search:
         elasticSearchMapping:
           type: keyword

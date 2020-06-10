@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace PunktDe\Elastic\AssetUsageInNodes\Aspect;
 
 /*
@@ -14,7 +16,6 @@ use Flowpack\ElasticSearch\ContentRepositoryAdaptor\ElasticSearchClient;
 use Flowpack\ElasticSearch\ContentRepositoryAdaptor\Exception\QueryBuildingException;
 use Neos\ContentRepository\Domain\Repository\NodeDataRepository;
 use Neos\Flow\Annotations as Flow;
-use Neos\Flow\Aop\JoinPoint;
 use Neos\Flow\Aop\JoinPointInterface;
 
 /**
@@ -96,7 +97,7 @@ class FindNodesByRelatedEntitiesUsingElasticAspect
             }
         }
 
-        $this->request->queryFilter('terms', ['__assetUsages' => $relatedAssetIdentifiers]);
+        $this->request->queryFilter('terms', ['punktde_assetUsages' => $relatedAssetIdentifiers]);
         $this->request->setValueByPath('query.bool.filter.bool.must_not', []);
         $this->request->size(1000);
 
