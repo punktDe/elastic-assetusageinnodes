@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace PunktDe\Elastic\AssetUsageInNodes\Eel;
 
 /*
@@ -67,11 +69,11 @@ class AssetUsageHelper implements ProtectedContextAwareInterface
         if ($propertyType === 'string') {
             $propertyValue = $node->getProperty($propertyName);
 
-            if(gettype($propertyValue) === 'NULL') {
+            if(is_null($propertyValue)) {
                 return [];
             }
 
-            if (gettype($propertyValue) === 'string') {
+            if (is_string($propertyValue)) {
                 return $this->getAssetReferencesFromContent($propertyValue);
             } else {
                 $this->logger->warning(sprintf('The property named %s of node %s is configured as string, but contains %s. The property is ignored!', $propertyName, $node->getIdentifier(), gettype($propertyValue)));
